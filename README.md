@@ -1,5 +1,5 @@
 # Ez-Debian-Server
-Installation automatisée et personnalisée d'un serveur Debian 
+Installation automatisée et personnalisée d'un serveur GNU/LINUX Debian 11.5 
 
 # Présentation 
 - Ce script bash permet de configurer simplement un serveur Debian de manière interactive.
@@ -96,4 +96,4 @@ Installation automatisée et personnalisée d'un serveur Debian
         echo "[8] - Générer une clef privée SSL et une demande de signature"
         echo "-------------------------------------------------------"
         echo "[r] - RETOUR AU MENU PRECEDENT"
-        echo "-------------------------------------------------------"
+        echo "-------------------------------------------------------" 
