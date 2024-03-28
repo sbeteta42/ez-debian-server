@@ -3,7 +3,7 @@ Installation automatisée et personnalisée d'un serveur Debian
 
 # Présentation 
 - Ce script bash permet de configurer simplement un serveur Debian de manière interactive.
-PS: Des goodies comme l'installatiion et la configuraition de apache2, nginx, mariadb,  vsftpd, iptables, shorewall, fail2ban, postfix, webbmin, wordpress, glpi.
+- Des goodies comme l'installatiion et la configuraition de apache2, nginx, mariadb,  vsftpd, iptables, shorewall, fail2ban, postfix, webbmin, wordpress, glpi.
 
 ## Le menu de départ
         echo "--------------------------------------------------"
