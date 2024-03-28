@@ -77,7 +77,7 @@ echo "--------------------------------------------------"
         echo "--------------------------------------"
         echo "[r] - RETOUR AU MENU PRECEDENT"
         echo "--------------------------------------"
-        
+    
 ## gestion des sites internet/intranet et du SSL
         echo "-------------------------------------------------------"
         echo "#         Site internet/intranet - SSL                #"
