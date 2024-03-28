@@ -3,6 +3,7 @@ Installer facilement et de manière automatisée et personnalisée d'un serveur 
 
 # Pre-requis
 - OS: Gnu/linux Debian 11
+- Faire une installation basique sans interface GUI.
 ```bash
 apt install -y openssh-server git
 ```
