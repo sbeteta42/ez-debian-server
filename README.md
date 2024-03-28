@@ -20,8 +20,6 @@ echo "[7] - Site internet/intranet - SSL"
 echo "[8] - Partitionnement"
 echo "[9] - Programmes divers"
 echo "--------------------------------------------------"
-echo "[q] - QUITTER"
-echo "--------------------------------------------------"
 
 ## Configuration du réseau
         echo "------------------------------"
