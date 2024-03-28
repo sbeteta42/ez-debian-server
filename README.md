@@ -1,4 +1,4 @@
-# ez-debian-server
+# Ez-Debian-Server
 Installation automatisée et personnalisée d'un serveur Debian 
 
 # Présentation 
