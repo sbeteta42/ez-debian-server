@@ -1,6 +1,11 @@
 # Ez-Debian-Server
 Installer facilement et de manière automatisée et personnalisée d'un serveur GNU/LINUX Debian 11.5 (DevOps)
 
+# Pre-requis
+- OS: Gnu/linux Debian 11
+```bash
+apt install -y openssh-server git
+```
 # Présentation 
 - Ce script bash permet de configurer simplement un serveur Debian de manière interactive.
 - Des goodies comme l'installatiion et la configuraition de apache2, nginx, mariadb,  vsftpd, iptables, shorewall, fail2ban, postfix, webbmin, wordpress, glpi.
@@ -97,3 +102,11 @@ Installer facilement et de manière automatisée et personnalisée d'un serveur 
         echo "-------------------------------------------------------"
         echo "[r] - RETOUR AU MENU PRECEDENT"
         echo "-------------------------------------------------------" 
+
+# Installation
+```bash
+git clone https://github.com/sbeteta42/ez-debian-server.git
+cd ez-debian-server
+chmod +x ez-debian-server.sh
+./ez-debian-server.sh
+```
