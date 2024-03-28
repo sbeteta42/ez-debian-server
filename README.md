@@ -36,7 +36,7 @@ echo "--------------------------------------------------"
         echo "------------------------------"
         echo "Entrez le numéro du menu voulu"
 
-## Configurer la sécurité du serveur
+## Configuration de la sécurité du serveur Debian
             echo "---------------------------------------"
             echo "#         Sécuriser le serveur        #"       
             echo "---------------------------------------"
@@ -80,7 +80,7 @@ echo "--------------------------------------------------"
         echo "[r] - RETOUR AU MENU PRECEDENT"
         echo "--------------------------------------"
     
-## gestion des sites internet/intranet et du SSL
+## Gestion des sites internet/intranet et du SSL
         echo "-------------------------------------------------------"
         echo "#         Site internet/intranet - SSL                #"
         echo "-------------------------------------------------------"        
