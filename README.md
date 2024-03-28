@@ -6,6 +6,7 @@ ce script bash permet de configurer simplement un serveur Debian de manière int
 PS: Des goodies comme l'installatiion et la configuraition de apache2, nginx, mariadb,  vsftpd, iptables, shorewall, fail2ban, postfix, webbmin, wordpress, glpi.
 
 ## le menu de départ
+
 echo "--------------------------------------------------"
 echo " Bienvenue dans ce script de configuration global "
 echo "--------------------------------------------------"
@@ -22,7 +23,7 @@ echo "--------------------------------------------------"
 echo "[q] - QUITTER"
 
 ## Configuration du réseau
-echo "------------------------------"
+        echo "------------------------------"
         echo "#       Accès au réseau      #"
         echo "------------------------------"
         echo "[1] - Configurer le DNS"
