@@ -35,7 +35,7 @@ echo "--------------------------------------------------"
         echo "Entrez le numéro du menu voulu"
 
 ## Configurer la sécurité du serveur
- echo "---------------------------------------"
+            echo "---------------------------------------"
             echo "#         Sécuriser le serveur        #"       
             echo "---------------------------------------"
             echo "[1] - Configurer SSH"
@@ -45,6 +45,7 @@ echo "--------------------------------------------------"
             echo "[r] - RETOUR AU MENU PRECEDENT"
             echo "--------------------------------------"
             echo "Entrez le numéro du menu voulu"
+            echo "---------------------------------------"
 
 ## Configuration du Pare-feu
                     echo "---------------------------------------------"
