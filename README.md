@@ -1,5 +1,5 @@
 # Ez-Debian-Server
-Installation automatisée et personnalisée d'un serveur GNU/LINUX Debian 11.5 
+Installer facilement et de manière automatisée et personnalisée d'un serveur GNU/LINUX Debian 11.5 (DevOps)
 
 # Présentation 
 - Ce script bash permet de configurer simplement un serveur Debian de manière interactive.
