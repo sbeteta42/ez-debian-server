@@ -7,6 +7,9 @@ PS: Des goodies comme l'installatiion et la configuraition de apache2, nginx, ma
 
 # Le menu de départ
 echo "--------------------------------------------------"
+echo "              EASY DEBIAN SERVER                  "
+echo "              sbeteta@beteta.org                  "
+echo "--------------------------------------------------"
 echo " Bienvenue dans ce script de configuration global "
 echo "--------------------------------------------------"
 echo "[1] - Réseau"
