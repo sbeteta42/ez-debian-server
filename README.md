@@ -9,7 +9,7 @@ apt install -y openssh-server git
 ```
 # Présentation 
 - Ce script bash permet de configurer simplement un serveur Debian de manière interactive.
-- Des goodies comme l'installatiion et la configuraition de apache2, nginx, mariadb,  vsftpd, iptables, shorewall, fail2ban, postfix, webbmin, wordpress, glpi.
+- Des goodies comme l'installatiion et la configuration de apache2, nginx, mariadb,  vsftpd, iptables, shorewall, fail2ban, postfix, webbmin, wordpress, glpi.
 
 ## Le menu de départ
         echo "--------------------------------------------------"
