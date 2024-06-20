@@ -2,7 +2,7 @@
 Installer facilement et de manière automatisée et personnalisée d'un serveur GNU/LINUX Debian 11.5 (DevOps)
 
 # Pre-requis
-- OS: Gnu/linux Debian 11
+- OS: Gnu/linux Debian 12
 - Faire une installation basique sans interface GUI.
 ```bash
 apt install -y openssh-server git
@@ -10,6 +10,11 @@ apt install -y openssh-server git
 # Présentation 
 - Ce script bash permet de configurer simplement un serveur Debian de manière interactive.
 - Des goodies comme l'installatiion et la configuration de apache2, nginx, mariadb,  vsftpd, iptables, shorewall, fail2ban, postfix, webbmin, wordpress, glpi.
+- Je rappelle qu'il NE FAUT PAS exécuter les scripts en étant connecté au serveur depuis un client via SSH !!
+- Vous devez être DIRECTEMENT SUR LE SERVEUR pour exécuter ces scripts.
+- PAS DE CONNEXION SSH !!
+- Beaucoup d'erreurs vont se produire autrement !
+- Et vous DEVEZ ETRE ROOT !
 
 ## Le menu de départ
         echo "--------------------------------------------------"
