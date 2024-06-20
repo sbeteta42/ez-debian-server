@@ -7,6 +7,7 @@ echo "--------------------------------------------------"
 echo "              EASY DEBIAN SERVER                  "
 echo "              sbeteta@beteta.org                  "
 echo "--------------------------------------------------"
+echo "--------------------------------------------------"
 echo " Bienvenue dans ce script de configuration global "
 echo "--------------------------------------------------"
 echo "[1] - Réseau"
@@ -71,10 +72,10 @@ if [ "$choix" == "1" ]; then
                     echo "--------------------------------------"
                     ip a
                     echo "--------------------------------------"
-                    echo "Quel est le nom de votre interface réseau ? (exemple courrant : ens33, enp0s3 ...)"
+                    echo "Quel est le nom de votre interface réseau ? (exemple courrant : enp0s3 ...)"
                     read nintfx
                     echo "--------------------------------------"
-                    echo "Entrez l'adresse IP voulue (exemple : 192.168.1.101)"
+                    echo "Entrez l'adresse IP voulue (exemple : 192.168.2.1)"
                     read ipstat
                     echo "--------------------------------------"
                     echo "Entrez le masque associé (exemple : 255.255.255.0)"
@@ -97,7 +98,7 @@ if [ "$choix" == "1" ]; then
                 fi
                 clear
                 echo "--------------------------------------"
-                echo "Voulez-vous que la configuration se fasse par le service DHCP ? [o/n]"
+                echo "Voulez-vous que la configuration se fasse par DHCP ? [o/n]"
                 read statc2
                 if [ "$statc2" == "o" ]; then
                     clear
@@ -106,7 +107,7 @@ if [ "$choix" == "1" ]; then
                     echo "--------------------------------------"
                     ip a
                     echo "--------------------------------------"
-                    echo "Quel est le nom de votre interface réseau ? (exemple courrant : ens33, enp0s3 ...)"
+                    echo "Quel est le nom de votre interface réseau ? (exemple courrant : enp0s3 ...)"
                     read nintfx
                     echo "# The loopback network interface" > /etc/network/interfaces.d/conf-script
                     echo "auto lo" >> /etc/network/interfaces.d/conf-script
@@ -316,7 +317,7 @@ if [ "$choix" == "4" ]; then
                             echo "--------------------------------------"
                             echo "Veuillez entrer le(s) nom(s) de(s) utilisateur(s) seuls autorisés à se connecter en ssh".
                             echo "Dans le cas de plusieurs utilisateurs, espacez les noms"
-                            echo "(exemple : adminWEB user sbeteta gbeteta)"
+                            echo "(exemple : adminWEB antoine roger marcel)"
                             read usallowssh
                             echo "AllowUsers $usallowssh" >> /etc/ssh/sshd_config
                         ;;
@@ -521,7 +522,7 @@ if [ "$choix" == "4" ]; then
                             clear
                             echo "--------------------------------------"
                             echo "Souhaitez-vous autoriser le trafic sur l'interface de bouclage ? [o/n]"
-                            echo "(vivement recommandé si vous utilisez MYSSQL/MARIADB)"
+                            echo "(vivement recommandé si vous utilisez SQL)"
                             read choix4
                             case $choix4 in
                                 o)
@@ -2808,7 +2809,7 @@ if [ "$choix" == "7" ]; then
                 clear
                 echo "--------------------------------------"
                 echo "Veuillez entrer le socket d'écoute de ce vhost (l'adresse IP:PORT sur laquelle apache répondra pour ce site - ceci dans le cas où votre serveur aurait plusieurs interfaces réseaux)"
-                echo "(exemple : 192.168.1.101:80)"
+                echo "(exemple : 192.168.0.201:80)"
                 echo "(dans le cas où vous souhaiteriez qu'apache réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                 echo "(exemple : *:8081)"
                 read socket
@@ -2847,7 +2848,7 @@ if [ "$choix" == "7" ]; then
                 clear
                 echo "----------------------------------"
                 echo "Quel nom voulez-vous donner à votre site ?"
-                echo "(exemple : www.formation.lan)"
+                echo "(exemple : www.bonbon.com)"
                 read d
                 i=0
                 while [ $i -lt 4 ]; do
@@ -2875,7 +2876,7 @@ if [ "$choix" == "7" ]; then
                 clear
                 echo "--------------------------------------"
                 echo "Veuillez entrer le socket d'écoute de ce vhost (l'adresse IP:PORT sur laquelle nginx répondra pour ce site - ceci dans le cas où votre serveur aurait plusieurs interfaces réseaux)"
-                echo "(exemple : 192.168.1.101:80)"
+                echo "(exemple : 192.168.0.201:80)"
                 echo "(dans le cas où vous souhaiteriez qu'nginx réponde quelle que soit l'interface réseau, tapez simplement le port)"
                 echo "(exemple : 8081)"
                 read socket
@@ -2956,11 +2957,15 @@ if [ "$choix" == "7" ]; then
                     echo "(exemple : monwordpress.com)"
                     read vhost
                     clear
-                    echo "Instalation des dépendances focntionnelles... Please wait :-)"
+                    echo "on commence"
                     apt update && apt upgrade -y
-                    apt install apache2 libapache2-mod-evasive mariadb-server mariadb-client php libapache2-mod-php php-cli php-mysql php-zip php-curl php-xml wget -y
+                    apt install apache2 libapache2-mod-evasive mariadb-server mariadb-client php libapache2-mod-php php-cli php-mysql             100%  109KB  70.6MB/s   00:00    
+[theophile@localhost ~]$ scp /home/theophile/Desktop/global-DEB2.sh theophile@172.20.51.51:/tmp
+php-zip php-curl php-xml wget -y
                     systemctl start apache2 && systemctl enable apache2
+
                     rm /etc/apache2/sites-enabled/000-default.conf
+
                     systemctl start mysqld && systemctl enable mysql
                     mysql_secure_installation
                     wait
@@ -3011,15 +3016,15 @@ if [ "$choix" == "7" ]; then
                     echo "Souhaitez-vous effacer la configuration précédente ? [O/n]"
                     read e
                     if [ $e == o ] || [ $e == O ]; then
-                    rm -r /tmp/glpi-9.5.7.tgz
+                    rm -r /tmp/glpi-10.0.9.tgz
                     rm -r /tmp/glpi
                     find /var -name "*glpi*" -exec rm -r {} \; 
                     fi
                     fi
                     clear
                     echo "------------------------------"
-                    echo "Bienvenue sur le script d'installation de GLPI pour Debian 11.5"
-                    echo "Ce script va installer la pile LAMP ainsi que GLPI 10.0.4"
+                    echo "Bienvenue sur le script d'installation de GLPI pour Debian 12"
+                    echo "Ce script va installer la pile LAMP ainsi que GLPI 10.0.9"
                     echo "----------------------------------"
                     echo "Votre machine doit pouvoir accéder à internet et au serveur des dépôts Debian"
                     echo "Souhaitez-vous tester votre connexion ? [O/n]"
@@ -3101,13 +3106,13 @@ if [ "$choix" == "7" ]; then
                             apt install apache2 -y
 
 
-                            wget https://github.com/glpi-project/glpi/releases/download/10.0.4/glpi-10.0.4.tgz -P /tmp
-                            tar -xvzf /tmp/glpi-10.0.4.tgz
+                            wget https://github.com/glpi-project/glpi/releases/download/10.0.9/glpi-10.0.9.tgz -P /tmp
+                            tar -xvzf /tmp/glpi-10.0.9.tgz
                             rm /var/www/html/index.html
                             cp -r glpi/* /var/www/html
                             chown -R www-data:www-data /var/www/html
                             chmod 755 /var/www/html
-                            apt install php libapache2-mod-php php-mysql php-mbstring php-curl php-gd php-xml php-intl php-ldap php-apcu php-xmlrpc php-cas php-zip php-bz2 php-imap php-soap php-opcache php-php-gettext php-dev -y
+                            apt install php libapache2-mod-php php-mysql php-mbstring php-curl php-json php-gd php-xml php-intl php-ldap php-apcu php-xmlrpc php-cas php-zip php-bz2 php-imap php-soap php-opcache php-php-gettext php-dev -y
                             
                             # Masquage de la version du service :
                             sed -i 's/ServerSignature On/ServerSignature Off/g' /etc/apache2/conf-enabled/security.conf
@@ -3143,7 +3148,7 @@ if [ "$choix" == "7" ]; then
                             apt install mariadb-server -y
                             mysqladmin -uroot create $b
                             mysql -uroot -e"GRANT ALL ON $b.* TO "$a"@localhost IDENTIFIED BY '$m'" $b
-                            apt install apache2 libapache2-mod-evasive -y
+                            apt install apache2 -y
                             systemctl enable apache2 && systemctl apache2 start
                             rm /etc/apache2/sites-enabled/000-default.conf
                             mkdir /var/www/$n
@@ -3164,12 +3169,12 @@ if [ "$choix" == "7" ]; then
                             echo '  Options -Indexes' >> /etc/apache2/conf-enabled/security.conf
                             echo '</Directory>' >> /etc/apache2/conf-enabled/security.conf
 
-                            wget https://github.com/glpi-project/glpi/releases/download/10.0.4/glpi-10.0.4.tgz -P /tmp
-                            tar -xvzf /tmp/glpi-10.0.4.tgz
+                            wget https://github.com/glpi-project/glpi/releases/download/10.0.9/glpi-10.0.9.tgz -P /tmp
+                            tar -xvzf /tmp/glpi-10.0.9.tgz
                             cp -r glpi/* /var/www/$n
                             chown -R www-data:www-data /var/www/$n
                             chmod 755 /var/www/$n
-                            apt install php libapache2-mod-php php-mysql php-mbstring php-curl php-gd php-xml php-intl php-ldap php-apcu php-xmlrpc php-cas php-zip php-bz2 php-imap php-soap php-opcache php-php-gettext php-dev -y
+                            apt install php libapache2-mod-php php-mysql php-mbstring php-curl php-json php-gd php-xml php-intl php-ldap php-apcu php-xmlrpc php-cas php-zip php-bz2 php-imap php-soap php-opcache php-php-gettext php-dev -y
                             apachectl graceful
                             clear
                             echo "L'installation est terminée"
@@ -3225,7 +3230,7 @@ if [ "$choix" == "7" ]; then
                             read h
                                 if [ "$h" == "o" ]; then
                                     echo "--------------------------------------------"
-                                    echo "Entrez le nom de votre site (exemple : www.formation.lan)"
+                                    echo "Entrez le nom de votre site (exemple : www.beaubois-entreprise.com)"
                                     read nom
 
                                         clear
@@ -3282,7 +3287,7 @@ if [ "$choix" == "7" ]; then
                                         clear
                                         echo "--------------------------------------"
                                         echo "Veuillez entrer le socket d'écoute de ce vhost (l'adresse IP:PORT sur laquelle apache répondra pour ce site - ceci dans le cas où votre serveur aurait plusieurs interfaces réseaux)"
-                                        echo "(exemple : 192.168.1.101:80)"
+                                        echo "(exemple : 192.168.0.201:80)"
                                         echo "(dans le cas où vous souhaiteriez qu'apache réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                                         echo "(exemple : *:8081)"
                                         read socket
@@ -3293,7 +3298,7 @@ if [ "$choix" == "7" ]; then
                                             o)
                                                 echo "--------------------------------------"
                                                 echo "Veuillez m'indiquer le socket d'écoute pour http"
-                                                echo "(exemple : 192.168.1.101:8081)"
+                                                echo "(exemple : 192.168.0.201:8081)"
                                                 echo "(dans le cas où vous souhaiteriez qu'apache réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                                                 echo "(exemple : *:8081)"
                                                 read socketredir
@@ -3447,7 +3452,7 @@ if [ "$choix" == "7" ]; then
                     clear
                     echo "--------------------------------------"
                     echo "Veuillez entrer le socket d'écoute de ce vhost (l'adresse IP:PORT sur laquelle apache répondra pour ce site - ceci dans le cas où votre serveur aurait plusieurs interfaces réseaux)"
-                    echo "(exemple : 192.168.1.101:443)"
+                    echo "(exemple : 192.168.0.201:443)"
                     echo "(dans le cas où vous souhaiteriez qu'apache réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                     echo "(exemple : *:4443)"
                     read socket
@@ -3458,7 +3463,7 @@ if [ "$choix" == "7" ]; then
                         o)
                             echo "--------------------------------------"
                             echo "Veuillez m'indiquer le socket d'écoute pour http"
-                            echo "(exemple : 192.168.1.101:8081)"
+                            echo "(exemple : 192.168.0.201:8081)"
                             echo "(dans le cas où vous souhaiteriez qu'apache réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                             echo "(exemple : *:8081)"
                             read socketredir
@@ -3644,7 +3649,7 @@ if [ "$choix" == "7" ]; then
                     clear
                     echo "--------------------------------------"
                     echo "Veuillez entrer le socket d'écoute de ce vhost (l'adresse IP:PORT sur laquelle apache répondra pour ce site - ceci dans le cas où votre serveur aurait plusieurs interfaces réseaux)"
-                    echo "(exemple : 192.168.1.101:443)"
+                    echo "(exemple : 192.168.0.201:443)"
                     echo "(dans le cas où vous souhaiteriez qu'apache réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                     echo "(exemple : *:4443)"
                     read socket
@@ -3655,7 +3660,7 @@ if [ "$choix" == "7" ]; then
                         o)
                             echo "--------------------------------------"
                             echo "Veuillez m'indiquer le socket d'écoute pour http"
-                            echo "(exemple : 192.168.1.101:8081)"
+                            echo "(exemple : 192.168.0.201:8081)"
                             echo "(dans le cas où vous souhaiteriez qu'apache réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                             echo "(exemple : *:8081)"
                             read socketredir
@@ -3878,7 +3883,7 @@ if [ "$choix" == "7" ]; then
                                 clear
                                 echo "--------------------------------------"
                                 echo "Veuillez entrer le socket d'écoute de ce vhost (l'adresse IP:PORT sur laquelle nginx répondra pour ce site - ceci dans le cas où votre serveur aurait plusieurs interfaces réseaux)"
-                                echo "(exemple : 192.168.1.101:443)"
+                                echo "(exemple : 192.168.0.201:443)"
                                 echo "(dans le cas où vous souhaiteriez qu'nginx réponde quelle que soit l'interface réseau, tapez simplement le port)"
                                 echo "(exemple : 4443)"
                                 read socket
@@ -3890,7 +3895,7 @@ if [ "$choix" == "7" ]; then
                                     o)
                                         echo "--------------------------------------"
                                         echo "Veuillez m'indiquer le socket d'écoute pour http"
-                                        echo "(exemple : 192.168.1.101:8081)"
+                                        echo "(exemple : 192.168.0.201:8081)"
                                         echo "(dans le cas où vous souhaiteriez que nginx réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                                         echo "(exemple : *:8081)"
                                         read socketredir
@@ -3957,7 +3962,7 @@ if [ "$choix" == "7" ]; then
 
                                 echo "--------------------------------------"
                                 echo "Veuillez entrer le socket d'écoute de ce vhost (l'adresse IP:PORT sur laquelle nginx répondra pour ce site - ceci dans le cas où votre serveur aurait plusieurs interfaces réseaux)"
-                                echo "(exemple : 192.168.1.101:443)"
+                                echo "(exemple : 192.168.0.201:443)"
                                 echo "(dans le cas où vous souhaiteriez qu'nginx réponde quelle que soit l'interface réseau, tapez simplement le port)"
                                 echo "(exemple : 4443)"
                                 read socket
@@ -3969,7 +3974,7 @@ if [ "$choix" == "7" ]; then
                                     o)
                                         echo "--------------------------------------"
                                         echo "Veuillez m'indiquer le socket d'écoute pour http"
-                                        echo "(exemple : 192.168.1.101:8081)"
+                                        echo "(exemple : 192.168.0.201:8081)"
                                         echo "(dans le cas où vous souhaiteriez que nginx réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                                         echo "(exemple : *:8081)"
                                         read socketredir
@@ -4065,7 +4070,7 @@ if [ "$choix" == "7" ]; then
                             clear
                             echo "--------------------------------------"
                             echo "Veuillez entrer le socket d'écoute de ce vhost (l'adresse IP:PORT sur laquelle nginx répondra pour ce site - ceci dans le cas où votre serveur aurait plusieurs interfaces réseaux)"
-                            echo "(exemple : 192.168.1.101:443)"
+                            echo "(exemple : 192.168.0.201:443)"
                             echo "(dans le cas où vous souhaiteriez qu'nginx réponde quelle que soit l'interface réseau, tapez simplement le port)"
                             echo "(exemple : 4443)"
                             read socket
@@ -4077,7 +4082,7 @@ if [ "$choix" == "7" ]; then
                                 o)
                                     echo "--------------------------------------"
                                     echo "Veuillez m'indiquer le socket d'écoute pour http"
-                                    echo "(exemple : 192.168.1.101:8081)"
+                                    echo "(exemple : 192.168.0.201:8081)"
                                     echo "(dans le cas où vous souhaiteriez que nginx réponde quelle que soit l'interface réseau, tapez *:PORT - remplacer PORT par le numéro du port choisi !!"
                                     echo "(exemple : *:8081)"
                                     read socketredir
@@ -4198,8 +4203,9 @@ if [ "$choix" == "7" ]; then
                     systemctl start mysqld && systemctl enable mysql
                     a2enmod ssl
                     mkdir /etc/apache2/ssl
-                    clear
 
+                    clear
+                    echo "--------------------------------------------"
                     echo "Bienvenue dans le script de création d'un site wordpress sur apache2 pour Debian 11"
                     echo "--------------------------------------------"
                     echo "Si vous exécutez le script pour la première fois, tapez ENTREE, sinon tapez [i] pour l'intégration d'un certificat signé par une autorité distante"
@@ -4249,7 +4255,9 @@ SSLOptions +StdEnvVars
                                 echo '</Directory>' >> /etc/apache2/conf-enabled/security.conf
 
                                 systemctl restart apache2
-                                clear
+                                
+								clear
+                    			echo "--------------------------------------------"
                                 echo "L'installation est terminée"
                                 echo "Il ne vous reste plus qu'à faire un enregistrement DNS sur votre hôte ou votre AD avec le nom de domaine choisi ($d)"
                                 echo "----------------------------------"
@@ -4293,6 +4301,7 @@ SSLOptions +StdEnvVars
 
                                 systemctl restart apache2
                                 clear
+                    			echo "--------------------------------------------"
                                 echo "L'installation est terminée"
                                 echo "Vous pouvez accéder au site via https://IP-SERVEUR"
                                 exit 0
@@ -4335,6 +4344,7 @@ SSLOptions +StdEnvVars
 
                                 systemctl restart apache2
                                 clear
+                    			echo "--------------------------------------------"
                                 echo "L'installation est terminée"
                                 echo "Il ne vous reste plus qu'à faire un enregistrement DNS sur votre hôte ou votre AD avec le nom de domaine choisi ($nom2)"
                                 echo "----------------------------------"
@@ -4378,6 +4388,7 @@ SSLOptions +StdEnvVars
 
                                 systemctl restart apache2
                                 clear
+                    			echo "--------------------------------------------"
                                 echo "L'installation est terminée"
                                 echo "Vous pouvez accéder au site via https://IP-SERVEUR"
                                 exit 0
@@ -4399,7 +4410,9 @@ SSLOptions +StdEnvVars
                             echo "Veuillez à présent configurer le script mysql_secure_installation"
                             mysql_secure_installation
                             wait
+
                             clear
+                    		echo "--------------------------------------------"
                             echo "Quel nom voulez-vous donner à la base SQL de wordpress ? (exemple : wordpressdb)"
                             read dbname
                             echo "--------------------------------------------"
@@ -4462,6 +4475,7 @@ SSLOptions +StdEnvVars
                                 
                                 systemctl restart apache2
                                 clear
+                    			echo "--------------------------------------------"
                                 echo "L'installation est terminée"
                                 echo "Il ne vous reste plus qu'à faire un enregistrement DNS sur votre hôte ou votre AD avec le nom de domaine choisi ($d)"
                                 echo "----------------------------------"
@@ -4473,6 +4487,7 @@ SSLOptions +StdEnvVars
                                 exit 0
                             fi
                                 clear
+                    			echo "--------------------------------------------"
                                 echo "La procédure de signature par une autorité de certification distante se fait en 3 temps"
                                 echo "1) Vous devez créer une clé privée pour apache"
                                 echo "2) Vous devez émettre une demande de signature que vous transmettrez à l'autorité afin qu'elle vous renvoie un certificat signé"
@@ -4485,6 +4500,7 @@ SSLOptions +StdEnvVars
                                     openssl genrsa 4096 > cleprivapache.key
                                     openssl req -new -key cleprivapache.key > demandesignature.csr
                                     wait
+                    				echo "--------------------------------------------"
                                     echo "Votre demande de signature /etc/apache2/ssl/demandesignature.csr est prête"
                                     echo "Vous devez la transmettre à l'autorité compétente"
                                     echo "----------------------------------"
@@ -4493,11 +4509,13 @@ SSLOptions +StdEnvVars
                                fi
                                     cd /etc/apache2/ssl
                                     clear
+                    				echo "--------------------------------------------"
                                     echo "Indiquez-moi le chemin absolu de votre clé privée afin que je génère                     la demande de signature pour une autorité distante"
                                     echo "(exemple : /etc/apache2/ssl/cleprivapache.key)"
                                     read chem
                                     openssl req -new -key $chem > demandesignature.csr
                                     clear
+                    				echo "--------------------------------------------"
                                     echo "Votre demande de signature /etc/apache2/ssl/demandesignature.csr est prête"
                                     echo "Vous devez la transmettre à une autorité compétente"
                                     echo "----------------------------------"
@@ -4509,6 +4527,7 @@ SSLOptions +StdEnvVars
                             mysql_secure_installation
                             wait
                             clear
+                    		echo "--------------------------------------------"
                             echo "Quel nom voulez-vous donner à la base SQL de wordpress ? (exemple : wordpressdb)"
                             read dbname
                             echo "--------------------------------------------"
@@ -4530,6 +4549,7 @@ SSLOptions +StdEnvVars
                             sed -i "s/password_here/$dbpasswd/" wp-config.php
                             chown -R www-data:www-data /var/www
                             clear
+                    	echo "--------------------------------------------"
                         echo "Voulez-vous auto-certifier votre serveur web [o] ? Ou faire signer votre certificat par une autorité distante [n] ?"
                             read b
                             if [ "$b" == "o" ]; then
@@ -4574,11 +4594,13 @@ SSLOptions +StdEnvVars
 
                                 systemctl restart apache2
                                 clear
+                    			echo "--------------------------------------------"
                                 echo "Installation terminée"
                                 echo "Vous pouvez à présent accéder au site via https://IP-SERVEUR"
                                 exit 0
                             fi
                                 clear
+                    			echo "--------------------------------------------"
                                 echo 'La procédure de signature par une autorité de certification distante se fait en 3 temps'
                                 echo '1) Vous devez créer une clé privée pour apache'
                                 echo '2) Vous devez émettre une demande de signature que vous transmettrez à une autorité afin qu elle vous renvoie un certificat signé'
@@ -4600,11 +4622,13 @@ SSLOptions +StdEnvVars
                                 fi
                                     cd /etc/apache2/ssl
                                     clear
+                    				echo "--------------------------------------------"
                                     echo "Indiquez-moi le chemin absolu de votre clé privée afin que je génère la demande de signature pour une autorité distante"
                                     echo "(exemple : /etc/apache2/ssl/cleprivapache.key)"
                                     read chem
                                     openssl req -new -key $chem > demandesignature.csr
                                    clear
+                    				echo "--------------------------------------------"
                                     echo "Votre demande de signature /etc/apache2/ssl/demandesignature.csr est prête"
                                     echo "Vous devez la transmettre à une autorité compétente"
                                     echo "----------------------------------"
@@ -4766,8 +4790,95 @@ if [ "$choix" == "9" ]; then
                     echo "Appuyez sur ENTRER pour continuer"
                     read ENTER
                     apt install vsftpd openssl -y
+		    systemctl enable vsftpd
                     cp /etc/vsftpd.conf /etc/vsftpd.conf.BAK
                     printf "\n" >> /etc/vsftpd.conf
+
+		    clear
+		    echo "-------------------------------------"
+		    echo "Voulez-vous configurer un serveur pour anonymes ? [o/n]"
+	            read answer
+   		    case $answer in
+		    	"o")
+				mkdir -p /srv/ftp/ANON/PUBLIC
+				chown nobody:nogroup /srv/ftp/ANON
+				chmod a+rwx /srv/ftp/ANON/PUBLIC
+
+                    		echo "### CONFIG SCRIPT ###" > /etc/vsftpd.conf
+				echo "listen=NO" >> /etc/vsftpd.conf
+				echo "listen_ipv6=YES" >> /etc/vsftpd.conf
+				echo "" >> /etc/vsftpd.conf
+
+				echo "anonymous_enable=YES" >> /etc/vsftpd.conf
+				echo "anon_root=/srv/ftp/ANON" >> /etc/vsftpd.conf
+				echo "no_anon_password=YES" >> /etc/vsftpd.conf
+				echo "hide_ids=YES" >> /etc/vsftpd.conf
+
+				echo "-------------------------------------"
+				echo "Voulez-vous donner aux anonymes le droit d'écrire et de téléverser ? [o/n]"
+				read answer2
+
+				case $answer2 in
+					"o")
+						echo "write_enable=YES" >> /etc/vsftpd.conf
+						echo "anon_upload_enable=YES" >> /etc/vsftpd.conf
+						echo "anon_mkdir_write_enable=YES" >> /etc/vsftpd.conf
+						echo "anon_umask=022" >> /etc/vsftpd.conf
+						echo "anon_other_write_enable=YES" >> /etc/vsftpd.conf
+					;;
+					"n")
+					;;
+				esac
+
+				echo "local_enable=YES" >> /etc/vsftpd.conf
+				echo "dirmessage_enable=YES" >> /etc/vsftpd.conf
+				echo "use_localtime=YES" >> /etc/vsftpd.conf
+				echo "xferlog_enable=YES" >> /etc/vsftpd.conf
+				echo "connect_from_port_20=YES" >> /etc/vsftpd.conf
+				echo "secure_chroot_dir=/var/run/vsftpd/empty" >> /etc/vsftpd.conf
+				echo "pam_service_name=vsftpd" >> /etc/vsftpd.conf
+
+				# Bon à savoir, pas de session anonyme en FTPS !
+				echo "rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem" >> /etc/vsftpd.conf
+				echo "rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key" >> /etc/vsftpd.conf
+				echo "ssl_enable=NO" >> /etc/vsftpd.conf
+
+                                    echo "-------------------------------------"
+                                    echo "Voulez-vous ajouter une ou plusieurs IP spécifique(s) sur la(les)quelle(s) le serveur sera en écoute ? [o/n]"
+                                    echo "Il ne répondra QUE sur l'(es) IP(s) spécifiée(s)"
+                                    echo "Il s'agît, bien évidemment d'IP(s) de VOTRE SERVEUR ! (dans le cas où ce dernier aurait plusieurs interfaces)"
+				    echo "Par défaut, si vous répondez n, VsFTPd répondra sur toutes les interfaces du serveur"
+                                    read choix  
+                                    case $choix in
+                                        "o")   
+                                            echo "-------------------------------------"
+                                            echo "Veuillez entrer l'IP (ou les IPs, séparées d'une virgule)"
+                                            echo "Attention, pas d'IP réseau !"
+                                            echo "(exemple : 192.168.0.10)"
+                                            echo "(exemple : 192.168.0.10,172.16.0.25)"
+                                            read listenaddress
+					    echo "" >> /etc/vsftpd.conf
+                                            echo "listen=YES" >> /etc/vsftpd.conf
+                                            echo "listen_address=$listenaddress" >> /etc/vsftpd.conf
+					;;
+					"n")
+				esac
+
+	
+				systemctl restart vsftpd
+
+				clear
+		    		echo "-------------------------------------"
+				echo "L'installation est terminée"
+				echo "Le répertoire des anonymes se trouvent dans /srv/ftp/ANON"
+				echo "Ils peuvent écrire et téléverser dans /srv/ftp/ANON/PUBLIC"
+				echo "Appuyez sur [ENTRER] pour quitter"
+				read enter
+				break
+   			  ;;
+   			"n")
+			;;
+		    esac
                     echo "### CONFIG SCRIPT ###" >> /etc/vsftpd.conf
                     echo "write_enable=YES" >> /etc/vsftpd.conf
                     echo "allow_writeable_chroot=YES" >> /etc/vsftpd.conf
@@ -4800,12 +4911,24 @@ if [ "$choix" == "9" ]; then
                                     echo "no_anon_password=YES" >> /etc/vsftpd.conf
                                     clear
                                     echo "-------------------------------------"
-                                    echo "Quel répertoire d'accès voulez-vous attribuer aux anonymes ?"
-                                    echo "Entrez le chemin absolu"
-                                    read anonab
-                                    echo "anon_root=$anonab" >> /etc/vsftpd.conf
-                                    mkdir -p $anonab
-                                    chmod 555 $anonab
+                                    echo "Je configure le répertoire /var/FTP/PUBLIC pour les anonymes"
+				    sleep 2
+				    mkdir -p /var/FTP/PUBLIC
+				    chown nobody:nogroup /var/FTP/PUBLIC
+                                    echo "anon_root=/var/FTP/PUBLIC" >> /etc/vsftpd.conf
+				    echo "hide_ids=YES" >> /etc/vsftpd.conf
+              			    clear
+                                    echo "-------------------------------------"
+                                    echo "Voulez-vous autoriser les anonymes à écrire dans le répertoire /var/FTP/PUBLIC ? [o/n]"
+                                    read answer
+				    case $answer in
+    				    	"o")
+						echo "write_enable=YES" >> /etc/vsftpd.conf
+						echo "anon_upload_enable=YES" >> /etc/vsftpd.conf
+					;;
+					"n")
+					;;
+				    esac
                                     clear
                                     echo "-------------------------------------"
                                     echo "Voulez-vous ajouter une ou plusieurs IP spécifique(s) sur la(les)quelle(s) le serveur sera en écoute ? [o/n]"
@@ -4874,12 +4997,24 @@ if [ "$choix" == "9" ]; then
                                     echo "no_anon_password=YES" >> /etc/vsftpd.conf
                                     clear
                                     echo "-------------------------------------"
-                                    echo "Quel répertoire d'accès voulez-vous attribuer aux anonymes ?"
-                                    echo "Entrez le chemin absolu"
-                                    read anonab1
-                                    echo "anon_root=$anonab1" >> /etc/vsftpd.conf
-                                    mkdir -p $anonab1
-                                    chmod 555 $anonab1
+                                    echo "Je configure le répertoire /var/FTP/PUBLIC pour les anonymes"
+				    sleep 2
+				    mkdir -p /var/FTP/PUBLIC
+				    chown nobody:nogroup /var/FTP/PUBLIC
+                                    echo "anon_root=/var/FTP/PUBLIC" >> /etc/vsftpd.conf
+				    echo "hide_ids=YES" >> /etc/vsftpd.conf
+				    clear
+                                    echo "-------------------------------------"
+                                    echo "Voulez-vous autoriser les anonymes à écrire dans le répertoire /var/FTP/PUBLIC ? [o/n]"
+                                    read answer
+				    case $answer in
+    				    	"o")
+						echo "write_enable=YES" >> /etc/vsftpd.conf
+						echo "anon_upload_enable=YES" >> /etc/vsftpd.conf
+					;;
+					"n")
+					;;
+				    esac
                                     clear
                                     echo "-------------------------------------"
                                     echo "Voulez-vous ajouter une ou plusieurs IP spécifique(s) sur la(les)quelle(s) le serveur sera en écoute ? [o/n]"
@@ -4998,6 +5133,7 @@ if [ "$choix" == "9" ]; then
                     echo "L'installation de Webmin est en cours, patience !"
                     echo "--------------------------------------------------"
                     sleep 2s
+                    
                     #Vérification installation précedente
                     n=$(find /var -name "*webmin*" | wc -l)
                     if [ $(command -v webmin) ] || [ $n -ge 1 ]; then
@@ -5005,27 +5141,12 @@ if [ "$choix" == "9" ]; then
                     echo "Webmin est déjà installé ou bien des fichiers d'une précédente configuration sont encore présents"
                     fi
 
-                    #Installation Apache2
-                    apt update
-                    apt upgrade -y
-                    apt install net-tools -y
-                    apt install apache2 -y
-                    systemctl start apache2 && systemctl enable apache2
-                    
-                    #Installation du repository de webmin
-                    echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
+                    apt -y install python3 shared-mime-info unzip apt-show-versions libapt-pkg-perl libauthen-pam-perl libio-pty-perl libnet-ssleay-perl curl -y
+                    curl -L -O https://www.webmin.com/download/deb/webmin-current.deb
+                    dpkg -i webmin-current.deb
 
-                    apt update
+                    systemctl restart webmin
 
-                    apt install gnupg1 -y
-
-                    wget http://www.webmin.com/jcameron-key.asc
-
-                    apt-key add jcameron-key.asc
-
-                    apt update
-
-                    apt install webmin -y
                     clear
                     echo "-----------------------------------------"
                     echo "L'installation est terminée"
