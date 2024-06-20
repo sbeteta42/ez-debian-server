@@ -1,5 +1,5 @@
 # Ez-Debian-Server
-Installer facilement et de manière automatisée et personnalisée d'un serveur GNU/LINUX Debian 11.5 (DevOps)
+Installer facilement et de manière automatisée et personnalisée d'un serveur GNU/LINUX Debian 12 (DevOps)
 
 # Pre-requis
 - OS: Gnu/linux Debian 12
